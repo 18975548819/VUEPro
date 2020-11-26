@@ -34,7 +34,7 @@
                                               </template>
                                               <el-menu-item-group :v-show="true">
                                                 <el-menu-item index="2-1"><i class="el-icon-pie-chart"></i><router-link to="/WarehouseInAndOut">出入库明细</router-link></el-menu-item>
-                                                <el-menu-item index="2-2"><i class="el-icon-pie-chart"></i><router-link to="/Test">测试</router-link></el-menu-item>
+                                                <el-menu-item index="2-2"><i class="el-icon-pie-chart"></i><router-link to="/WmsStockPage">库存查询</router-link></el-menu-item>
                                               </el-menu-item-group>
                                             </el-submenu>
                                             <el-menu-item index="3">

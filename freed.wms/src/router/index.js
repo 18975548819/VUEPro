@@ -11,6 +11,7 @@ import Home from '../components/WMS/Home.vue'
 import Kanban from '../components/WMS/Page/KanbanPage.vue'
 import Test from '../components/WMS/Page/TestPage.vue'
 import WarehouseInAndOut from '../components/WMS/Page/WarehouseInOutDetailsPage.vue'
+import WmsStockPage from '../components/WMS/Page/WmsStockPage.vue'
 
 Vue.use(less)
 Vue.use(Router)
@@ -53,7 +54,7 @@ export default new Router({
       children:[
         { path: '/Kanban', component: Kanban, name: '看板' },
         { path: '/WarehouseInAndOut', component: WarehouseInAndOut, name: '出入库明细' },
-        { path: '/Test', component: Test, name: '测试' },
+        { path: '/WmsStockPage', component: WmsStockPage, name: '库存查询' },
       ]
     },
   ],

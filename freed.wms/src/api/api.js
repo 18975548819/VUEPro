@@ -53,6 +53,12 @@ export const requestRepertoryIdAndStorageTypeList= (data,url)=>{ return  axios({
 //出入库明细报表查询
 export const requestGetWmsEntryAndExitGoods= (data,url)=>{ return  axios({url: base + 'ReportQuery/get_WmsEntryAndExitGoods', method: 'post', data: data,headers: {'Content-Type':'application/json'}}).then(res=> res.data)};
 
+//库存报表查询
+export const requestGetWmsStock= (data,url)=>{ return  axios({url: base + 'ReportQuery/get_WmsStock', method: 'post', data: data,headers: {'Content-Type':'application/json'}}).then(res=> res.data)};
+
+//物料库存详情查询
+export const requestGetWmsStockDetail= (data,url)=>{ return  axios({url: base + 'ReportQuery/get_WmsStockDetail', method: 'post', data: data,headers: {'Content-Type':'application/json'}}).then(res=> res.data)};
+
 //近七天仓库库存趋势变化
 export const requestServerDayInAndOutWarehouseTrends= (data,url)=>{ return  axios({url: base + 'WmsBasicInfo/get_ServerDayInAndOutWarehouseTrends', method: 'post', data: data,headers: {'Content-Type':'application/json'}}).then(res=> res.data)};
 
