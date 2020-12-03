@@ -24,6 +24,9 @@ module.exports = {
   entry: {
     app: './src/main.js'
   },
+  externals: { // <-添加
+    'datav':'datav'
+  },
   output: {
     path: config.build.assetsRoot,
     filename: '[name].js',

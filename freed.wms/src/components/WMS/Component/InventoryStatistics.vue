@@ -37,7 +37,7 @@ export default {
     methods:{
         getRankingData(){
             let self = this;
-            requestDvScrollRankingBoard().then(function(res){
+            requestDvScrollRankingBoard({PageIndex:1,PageSize:100}).then(function(res){
                 Vue.set(self.config,'data',res.data.seriesDatas);   
                 //Vue.set(self.config,'unit','数量');
             }).catch(function(error){

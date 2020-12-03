@@ -145,7 +145,7 @@ export default {
       self.sycwCount = 0;
       self.sumCount = 0;
       self.drawPieChartOut();
-      requestGetEchartsPie().then(function(res){
+      requestGetEchartsPie({PageIndex:1,PageSize:100}).then(function(res){
         self.pie.lenghtData = res.data.legendData;
         self.pie.xData = res.data.seriesDatas;
         self.sycwCount = res.data.seriesDatas.length;

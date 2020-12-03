@@ -9,10 +9,12 @@ import axios from 'axios';
 import store from './store/index';
 import echarts from 'echarts';
 import JsonExcel from 'vue-json-excel';
+import dataV from '@jiaminghi/data-view'
 
 Vue.prototype.$http = axios;
 Vue.prototype.$echarts = echarts;
 Vue.use(ElementUI);
+Vue.use(dataV)
 Vue.config.productionTip = false;
 Vue.component('downloadExcel', JsonExcel) //Excel导出
 

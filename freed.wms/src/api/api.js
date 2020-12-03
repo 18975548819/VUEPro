@@ -2,7 +2,8 @@ import axios from 'axios'
 import url from 'postcss-url'
 
 //let base = 'http://10.0.40.68:5088/v1/api/';  //Linx服务器接口地址
-let base = 'http://localhost:5088/v1/api/';  //本地接口地址
+//let base = 'http://localhost:5088/v1/api/';  //本地接口地址
+let base = 'http://10.0.40.16:8026/v1/api/';  //Windeows服务器接口地址
 
 //#region 登陆界面接口
 // 获取配置信息
@@ -61,5 +62,12 @@ export const requestGetWmsStockDetail= (data,url)=>{ return  axios({url: base + 
 
 //近七天仓库库存趋势变化
 export const requestServerDayInAndOutWarehouseTrends= (data,url)=>{ return  axios({url: base + 'WmsBasicInfo/get_ServerDayInAndOutWarehouseTrends', method: 'post', data: data,headers: {'Content-Type':'application/json'}}).then(res=> res.data)};
+
+//获取物料入库信息
+export const requestInStroageList= (data,url)=>{ return  axios({url: base + 'InStorageGoods/get_InStorageGoodsList', method: 'post', data: data,headers: {'Content-Type':'application/json'}}).then(res=> res.data)};
+
+//获取物料出库信息
+export const requestOutStroageList= (data,url)=>{ return  axios({url: base + 'OutStorageGoods/get_OutStorageGoodsInfoList', method: 'post', data: data,headers: {'Content-Type':'application/json'}}).then(res=> res.data)};
+
 
 

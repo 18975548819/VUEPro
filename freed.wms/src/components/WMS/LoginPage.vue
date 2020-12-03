@@ -148,7 +148,7 @@ import {requestCofig,requestGetRepertoty,requestLoginOn} from '../../api/api';
                     duration:2000
                     });
                     store.commit("set_token", res.data);
-                    self.$router.push('/Index');
+                    self.$router.push('/Home');
                     window.localStorage.setItem('token',res.data);
                     window.localStorage.setItem('loginName',self.form.name);
                     window.localStorage.setItem('repertotyName',self.form.repertoty);

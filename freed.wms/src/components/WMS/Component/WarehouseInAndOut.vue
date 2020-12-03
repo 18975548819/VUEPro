@@ -29,7 +29,7 @@
                     </el-date-picker>
             单号：<el-input v-model="selectWhere.DeliveryNo" placeholder="请输入单据号" style="width:120px"></el-input>
             料号：<el-input v-model="selectWhere.MaterieId" placeholder="请输入物料编号" style="width:120px"></el-input>
-            <el-button type="primary" @click="getWmsEntryAndExitGoods()">信息按钮</el-button>
+            <el-button id="butSubmit" type="primary" @click="getWmsEntryAndExitGoods()">查询</el-button>
             <!-- <el-button type="primary" :data = "tableData"><i class="el-icon-upload el-icon--right"></i></el-button> -->
             <download-excel
                 class = "export-excel-wrapper"
@@ -37,12 +37,13 @@
                 :fields="json_Tablefields"
                 name = "出入库明细.xls">
                 <!-- 上面可以自定义自己的样式，还可以引用其他组件button -->
-                 <el-button type="primary"><i class="el-icon-download el-icon--right"></i></el-button>
+                 <el-button id="butRopert" type="primary"><i class="el-icon-download el-icon--left" style="width:2px"></i></el-button>
             </download-excel>
         </div>
         <!-- <el-scrollbar style="width: 100%;height:750px"> -->
         <!-- 数据表格 -->
         <el-table
+            id="tableIODv"
             v-loading="loading"
             element-loading-text="数据加载中"
             element-loading-spinner="el-icon-loading"
@@ -233,7 +234,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 #ContentDv{
     widows: 100%;
     height: 800px;
@@ -241,25 +242,36 @@ export default {
 .el-scrollbar .el-scrollbar__wrap .el-scrollbar__view{
    white-space: nowrap;
 }
+#tableIODv{
+    position: relative;
+    overflow:auto;
+    background: rgba(255,255,255,0);
+}
+#tableIODv,.el-table th, .el-table tr {
+    background-color:rgba(255, 255, 255, 0) !important;
+    color: rgb(148, 142, 142);
+}
 .el-table{
     position: relative;
     overflow:auto;
     background: rgba(255,255,255,0);
 }
 .el-table th, .el-table tr {
-    background-color:rgba(255, 255, 255, 0);
+    background-color:rgba(255, 255, 255, 0) !important;
     color: white;
 }
 /* 表格鼠标悬浮时的样式（高亮） */
 .el-table--enable-row-hover .el-table__body tr:hover {
-  background: rgb(255, 255, 255,0);
+  background: rgba(255, 255, 255,0);
   border: 1px solid #313463;
 }
 /*表格鼠标悬停的样式（背景颜色）*/
 .el-table tbody tr:hover > td {
   background-color: #001851 !important;
 }
-
+.el-button{
+    width: 100px;
+}
 .el-button+.el-button {
     margin-left: 0px;
 }
@@ -267,5 +279,11 @@ export default {
     float:right;
     position: relative;
     left: 0px;
+}
+#butSubmit{
+    width: 100px;
+}
+#butRopert{
+    width: 50px;
 }
 </style>

@@ -11,7 +11,7 @@
                         </el-option>
                     </el-select>
             料号：<el-input v-model="selectWhere.MaterieId" placeholder="请输入物料编号" style="width:200px"></el-input>
-            <el-button type="primary" @click="GetWmsStock()">信息按钮</el-button>
+            <el-button type="primary" @click="GetWmsStock()">查询库存</el-button>
             <!-- <el-button type="primary" :data = "tableData"><i class="el-icon-upload el-icon--right"></i></el-button> -->
             <download-excel
                 class = "export-excel-wrapper"
@@ -33,6 +33,7 @@
             height="760"
             :data="tableData"
             style="width: 100%;max-height:760px"
+            @row-click="tableRowClickFun"
             >
             <el-table-column
             prop="materieId"
@@ -50,6 +51,7 @@
             width="140">
             </el-table-column>
             <el-table-column
+                align="center"
                 fixed="right"
                 label="操作"
                 width="100">
@@ -109,6 +111,10 @@ export default {
                 MaterieId:'',
                 SeachData:[]
             },
+            tableClickObj:{
+                MaterieId:'',
+                RepertoryId:''
+            },
             loading: true,
             loadingDetail:true,
             total:1000,
@@ -129,6 +135,12 @@ export default {
     methods:{
         formatterFun(row, column) {
         return row.address;
+        },
+        tableRowClickFun(row, event, column){
+            debugger
+            this.tableClickObj.MaterieId = row.materieId;
+            this.tableClickObj.RepertoryId = row.repertoryId;
+            this.$emit('tableClick',this.tableClickObj);
         },
         handleSizeChange(val){
             this.pageSize = val;
@@ -156,12 +168,11 @@ export default {
                 console.log(error);
             })
         },
-        //获取出入库明细
+        //获取库存
         GetWmsStock()
         {
             let self = this;
             self.loading = true;
-            console.log(self.selectWhere.StartScanTime);
             requestGetWmsStock({RepertoryId:self.selectWhere.RepertoryId,StorageType:self.selectWhere.StorageType,
             DeliveryNo:self.selectWhere.DeliveryNo,MaterieId:self.selectWhere.MaterieId,
             ScanTime:self.selectWhere.SeachData,PageIndex:self.currentPage,PageSize:self.pageSize}).then(function(res){
@@ -170,9 +181,11 @@ export default {
                     self.tableData = res.results;
                     self.total = res.pageModel.totalCount;
                     self.loading = false;
+                    self.$emit("setSelectWher",self.selectWhere);
                 }
             }).catch(function(error){
                 console.log(error);
+                return;
             })
         },
         handleClick(row) {
@@ -200,7 +213,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 #ContentDv2{
     width: 93%;
     height: 800px;
@@ -213,7 +226,7 @@ export default {
     overflow:auto;
     background: rgba(255,255,255,0);
 }
-.el-table th, .el-table tr {
+#tableStock,.el-table th, .el-table tr {
     background-color:rgba(255, 255, 255, 0) !important;
     color: rgb(148, 142, 142);
 }
@@ -236,7 +249,7 @@ export default {
     left: 0px;
 }
 #SelectDv2{
-    margin-left: 140px;
+    margin-left: 15px;
 }
 .el-icon-arrow-right:before {
     font-size: 15px;
@@ -250,8 +263,8 @@ export default {
     top: 0;
     width: 100%;
     height: 100%;
-    opacity: 0;
-    background: #000;
+    opacity: 0 !important;
+    background:rgba(255, 255, 255, 0) !important;
 }
 
 #tableDetail{

@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 // 将自动注册所有组件为全局组件
-import dataV from '@jiaminghi/data-view'
+//import dataV from '@jiaminghi/data-view'
 import Index from '../components/WMS/Index.vue'
 import less from 'less'
 import Login from '../components/WMS/LoginPage.vue'
@@ -9,13 +9,12 @@ import store from '../store/index'
 import Error from '../components/WMS/error404.vue'
 import Home from '../components/WMS/Home.vue'
 import Kanban from '../components/WMS/Page/KanbanPage.vue'
-import Test from '../components/WMS/Page/TestPage.vue'
 import WarehouseInAndOut from '../components/WMS/Page/WarehouseInOutDetailsPage.vue'
 import WmsStockPage from '../components/WMS/Page/WmsStockPage.vue'
 
 Vue.use(less)
 Vue.use(Router)
-Vue.use(dataV)
+//Vue.use(dataV)
 
 const originalPush = Router.prototype.push
 Router.prototype.push = function push(location) {
@@ -58,5 +57,5 @@ export default new Router({
       ]
     },
   ],
-  mode:'hash' //去除#号
+  //mode:'hash' //去除#号
 })
